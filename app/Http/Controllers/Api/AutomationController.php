@@ -9,7 +9,7 @@ use BFACP\Account\DiscordVeriToken;
 use BFACP\Battlefield\Player;
 use BFACP\Helpers\Main;
 
-class UserController extends BaseController
+class AutomationController extends BaseController
 {
     /**
      * Show the profile for the given user.
