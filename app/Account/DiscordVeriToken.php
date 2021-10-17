@@ -42,7 +42,7 @@ class DiscordVeriToken extends Elegant
      *
      * @var array
      */
-    protected $dates = ['created_at'];
+    protected $dates = [];
 
     /**
      * The attributes excluded form the models JSON response.
