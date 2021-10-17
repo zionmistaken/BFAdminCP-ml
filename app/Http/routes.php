@@ -7,7 +7,7 @@
 use Illuminate\Support\Facades\Route;
 
 if (PHP_SAPI !== 'cli') {
-    Route::get('/api/discord/link/{discordUID}/{soldierName}/', 'AutomationController@discordLink');
+    Route::get('/extApi/discord/link/{discordUID}/{soldierName}/', 'AutomationController@discordLink');
 
     Route::group(['namespace' => 'Api', 'middleware' => ['web', 'throttle:100,1'], 'prefix' => 'api'], function () {
         /*===================================
