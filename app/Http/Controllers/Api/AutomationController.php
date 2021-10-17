@@ -44,7 +44,7 @@ class AutomationController extends BaseController
         $found->DiscordID = $discordUID;
         
         $util = new Main;
-        $salt = $util->generateStrongPassword(6, false, 'lu');
+        $salt = $util->generateStrongPassword(6, false, 'd');
 
         $token = new DiscordVeriToken;
         $token->PlayerID = $found->PlayerID;
