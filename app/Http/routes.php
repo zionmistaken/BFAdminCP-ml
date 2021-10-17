@@ -21,6 +21,13 @@ if (PHP_SAPI !== 'cli') {
         });
 
         /*===================================
+        =            API Automation         =
+        ===================================*/
+        Route::group(['prefix' => 'automation'], function () {
+            Route::get('/discord/link/{discordUID}/{soldierName}/', 'AutomationController@discordLink');
+        });
+
+        /*===================================
         =            API Pusher             =
         ===================================*/
 
