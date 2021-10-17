@@ -21,9 +21,9 @@ class AutomationController extends BaseController
     public function discordLink($discordUID, $soldierName)
     {
         $emptyvar = (!$discordUID) ? 'discordUID' : ((!$soldierName) ? 'soldierName' : NULL);
-        if (!$discordUID || !$soldierName) return response(400)->json([ 'status' => 400,
-                                                                        'message' => 'Bad Request',
-                                                                        'error' => 'The parameter `'.$emptyvar.'` is null or empty.' ]);
+        if (!$discordUID || !$soldierName) return response()->json([ 'status' => 400,
+                                                                     'message' => 'Bad Request',
+                                                                     'error' => 'The parameter `'.$emptyvar.'` is null or empty.' ]);
 
         //Check for SoldierName thru tbl_playerdata
             //If no player -> return json error
@@ -37,9 +37,9 @@ class AutomationController extends BaseController
 
         $found = Player::where('SoldierName', $soldierName)->where('GameID', 1)->first();
 
-        if (!$found) return response(404)->json([ 'status' => 404,
-                                                  'message' => 'Not Found',
-                                                  'error' => 'The specified soldierName `'.$soldierName.'` was not found in the database.' ]);
+        if (!$found) return response()->json([ 'status' => 404,
+                                               'message' => 'Not Found',
+                                               'error' => 'The specified soldierName `'.$soldierName.'` was not found in the database.' ]);
 
         $found->DiscordID = $discordUID;
         
@@ -51,8 +51,8 @@ class AutomationController extends BaseController
         $token->Token = $salt;
         $token->save();
 
-        return response(200)->json([ 'status' => 200,
-                                     'message' => 'OK',
-                                     'verification' => $salt]);
+        return response()->json([ 'status' => 200,
+                                  'message' => 'OK',
+                                  'verification' => $salt ]);
     }
 }
