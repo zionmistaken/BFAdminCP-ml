@@ -23,7 +23,7 @@ class UserController extends BaseController
         $emptyvar = (!$discordUID) ? 'discordUID' : ((!$soldierName) ? 'soldierName' : NULL);
         if (!$discordUID || !$soldierName) return response(400)->json([ 'status' => 400,
                                                                         'message' => 'Bad Request',
-                                                                        'error' => 'The parameter `'.$emptyvar!.'` is null or empty.' ]);
+                                                                        'error' => 'The parameter `'.$emptyvar.'` is null or empty.' ]);
 
         //Check for SoldierName thru tbl_playerdata
             //If no player -> return json error
