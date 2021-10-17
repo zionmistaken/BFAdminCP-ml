@@ -471,13 +471,30 @@
                         <div class="tab-pane active" id="links">
                             @foreach($player->links as $key => $link)
                                 @unless(is_null($link))
-                                    @if($key == 'chatlogs' && ((!$bfacp->isLoggedIn && !Config::get('bfacp.site.chatlogs.guest')) || ($bfacp->isLoggedIn && !Auth::user()->ability(null, 'chatlogs'))))
+                                @if($key == 'bf4db')
+                                  @if(!is_null($link->is_banned))
+                                    @if($link->is_banned === 1)
+                                        {{ HTML::link($link->url, Lang::get(sprintf('player.profile.links.items.%s', $key)) . sprintf(' - %s', $link->reason), ['class' => 'btn bg-red', 'target' => '_blank']) }}
+                                    @elseif(in_array($link->is_banned, [2, 3]))
+                                        {{ HTML::link($link->url, Lang::get(sprintf('player.profile.links.items.%s', $key)) . sprintf(' - %s', $link->reason), ['class' => 'btn bg-green', 'target' => '_blank']) }}
+                                    @elseif(in_array($link->is_banned, [0, 4, 5]))
+                                        {{ HTML::link($link->url, Lang::get(sprintf('player.profile.links.items.%s', $key)) . sprintf(' - %s', $link->reason), ['class' => 'btn bg-orange', 'target' => '_blank']) }}
+                                    @else
+                                        {{ HTML::link($link->url, Lang::get(sprintf('player.profile.links.items.%s', $key)) . sprintf(' - %s', $link->reason), ['class' => 'btn bg-blue', 'target' => '_blank']) }}
+                                    @endif
+                                  @else
+                                      {{ HTML::link($link->url, Lang::get(sprintf('player.profile.links.items.%s', $key)) . ' - OK', ['class' => 'btn bg-blue', 'target' => '_blank']) }}
+                                  @endif
+                                @else
+                                    @if($key == 'chatlogs' && ((!$bfacp->isLoggedIn && !Config::get('bfacp.site.chatlogs.guest')) || ($bfacp->isLoggedIn && !$bfacp->user->ability(null, 'chatlogs'))))
                                         {{-- Do not show the chatlogs button --}}
-                                    @elseif($key == 'pbbans' && (is_null($bfacp->user) || !Auth::user()->ability(null, 'player.view.guids')))
+                                    @elseif($key == 'pbbans' && (is_null($bfacp->user) || !$bfacp->user->ability(null, 'player.view.guids')))
                                         {{-- Do not show the pbbans button --}}
                                     @else
-                                        {!! Html::link($link, trans(sprintf('player.profile.links.items.%s', $key)), ['class' => 'btn bg-blue', 'target' => ($key == 'chatlogs' ? '_self' : '_blank')]) !!}
+                                        {{ HTML::link($link, Lang::get(sprintf('player.profile.links.items.%s', $key)), ['class' => 'btn bg-blue', 'target' => '_blank']) }}
                                     @endif
+                                @endif
+
                                 @endunless
                             @endforeach
                         </div>

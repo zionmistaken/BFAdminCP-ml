@@ -235,7 +235,7 @@
                 <div class="box box-solid">
                     <div class="box-header">
                         <h3 class="box-title">
-                            Latest Reported Players (2 Weeks)
+                            Latest Reported Players (1 Week)
                         </h3>
                     </div>
 

@@ -203,18 +203,28 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-6">
-            <div class="form-group">
-                <input class="form-control" type="text" ng-model="search.scoreboard"
-                       placeholder="Search for player..."/>
-            </div>
-        </div>
-    </div>
+    
 
     <?php if (! is_null($adminview)) {
         echo $adminview;
     } ?>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title" style="padding-bottom:10px">Filter Players</h3>
+            
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="search.scoreboard"
+                       placeholder="Search for player..."/>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    </div>
+   
 
     <div class="row">
         <div class="col-xs-12 col-md-6" ng-repeat="(teamID, team) in teams track by teamID">
