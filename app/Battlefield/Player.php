@@ -57,7 +57,7 @@ class Player extends Elegant
      *
      * @var array
      */
-    protected $appends = ['profile_url', 'country_flag', 'country_name', 'rank_image', 'links', 'geo', 'link_verified'];
+    protected $appends = ['profile_url', 'country_flag', 'country_name', 'rank_image', 'links', 'geo'];
 
     /**
      * Models to be loaded automatically.
