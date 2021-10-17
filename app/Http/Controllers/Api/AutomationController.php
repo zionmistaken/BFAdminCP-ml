@@ -42,6 +42,7 @@ class AutomationController extends BaseController
                                                'error' => 'The specified soldierName `'.$soldierName.'` was not found in the database.' ]);
 
         $found->DiscordID = $discordUID;
+        $found->save();
         
         $util = new Main;
         $salt = $util->generateStrongPassword(6, false, 'd');
