@@ -7,7 +7,11 @@
 use Illuminate\Support\Facades\Route;
 
 if (PHP_SAPI !== 'cli') {
-    Route::get('/discord/link/{discordUID}/{soldierName}/', 'Api\AutomationController@discordLink');
+    /*===================================
+    =            External API           =
+    ===================================*/
+    Route::get('/extApi/discord/link/{discordUID}/{soldierName}/{token}', 'Api\AutomationController@discordLink');
+
     Route::group(['namespace' => 'Api', 'middleware' => ['web', 'throttle:100,1'], 'prefix' => 'api'], function () {
         /*===================================
         =            API Resources          =
@@ -20,13 +24,6 @@ if (PHP_SAPI !== 'cli') {
             Route::get('ip/{addy}', 'HelpersController@iplookup');
             Route::get('squads', 'HelpersController@getSquads');
         });
-
-        /*===================================
-        =            API Automation         =
-        ===================================*/
-        /*Route::group(['prefix' => 'automation'], function () {
-            Route::get('/discord/link/{discordUID}/{soldierName}/', 'AutomationController@discordLink');
-        });*/
 
         /*===================================
         =            API Pusher             =

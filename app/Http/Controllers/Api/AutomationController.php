@@ -18,8 +18,12 @@ class AutomationController extends BaseController
      * @param  String  soldierName
      * @return Response
      */
-    public function discordLink($discordUID, $soldierName)
+    public function discordLink($discordUID, $soldierName, $token)
     {
+        if ($token != env('EXAPI_TOKEN') || !$token) return response()->json([ 'status' => 401,
+                                                                               'message' => 'Unauthorized',
+                                                                               'error' => 'You\'re unauthorized to perform this action.' ]);
+
         $emptyvar = (!$discordUID) ? 'discordUID' : ((!$soldierName) ? 'soldierName' : NULL);
         if (!$discordUID || !$soldierName) return response()->json([ 'status' => 400,
                                                                      'message' => 'Bad Request',
