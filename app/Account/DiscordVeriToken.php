@@ -35,7 +35,7 @@ class DiscordVeriToken extends Elegant
      *
      * @var array
      */
-    protected $guarded = ['PlayerID', 'Token'];
+    protected $guarded = ['PlayerID', 'Token', 'DiscordID'];
 
     /**
      * Date fields to convert to carbon instances.

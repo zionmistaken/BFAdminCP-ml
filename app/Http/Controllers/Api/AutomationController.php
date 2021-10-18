@@ -45,7 +45,7 @@ class AutomationController extends BaseController
                                                'message' => 'Not Found',
                                                'error' => 'The specified soldierName `'.$soldierName.'` was not found in the database.' ]);
 
-        $found->DiscordID = $discordUID;
+        $found->LinkVerified = false;
         $found->save();
         
         $util = new Main;
@@ -54,6 +54,7 @@ class AutomationController extends BaseController
         $token = new DiscordVeriToken;
         $token->PlayerID = $found->PlayerID;
         $token->Token = $salt;
+        $token->DiscordID = $discordUID;
         $token->save();
 
         return response()->json([ 'status' => 200,
